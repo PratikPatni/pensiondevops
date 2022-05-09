@@ -15,6 +15,19 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- task: DownloadPipelineArtifact@2
+  inputs:
+    buildType: 'specific'
+    project: '731ff8b5-22b0-4d14-ae8a-3f0e2d75bf00'
+    definition: '33'
+    specificBuildWithTriggering: true
+    buildVersionToDownload: 'latest'
+    targetPath: '$(Pipeline.Workspace)'
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)'
+    artifact: 'sourcedrop'
+    publishLocation: 'pipeline'
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
