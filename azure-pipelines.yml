@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
 trigger:
-- master
+- none
 
 pool:
   vmImage: 'windows-latest'
@@ -14,7 +14,17 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
+resources:
+  pipelines:
+    - pipeline: sourcepipeline
+    source: 'source'
+    trigger:
+      branches:
+        -master
 steps:
+- download: sourcepipeline
+  artifact: sourcedrop
+
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
@@ -27,7 +37,7 @@ steps:
     scannerMode: 'MSBuild'
     projectKey: 'DevOpsDemoAzure1_PensionsDevOpsFramework'
     projectName: 'PensionsDevOpsFramework'
-
+    
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
