@@ -1,9 +1,9 @@
-﻿@page
+@page
 @model AboutModel
 @{
-    ViewData["Title"] = "About";
+    ViewData["Title"] = "Api data";
 }
-<br />
-<h4>Your application description page.</h4>
+<h2>@ViewData["Title"]</h2>
+<h3>@Model.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<p>Data retrived from api.</p>
