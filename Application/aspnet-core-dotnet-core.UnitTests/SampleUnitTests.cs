@@ -1,5 +1,4 @@
 using aspnet_core_dotnet_core.Pages;
-using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
     
 namespace aspnet_core_dotnet_core.UnitTests
@@ -14,10 +13,16 @@ namespace aspnet_core_dotnet_core.UnitTests
             Assert.AreEqual("Index", actual: model.DoTest());
         }
         [TestMethod]
-        public void test2()
+        public void ContactPageTest()
         {
-            IndexModel model = new IndexModel();
-            Assert.IsNotNull(model);
+            ContactModel model = new ContactModel();
+            Assert.AreEqual("Contact",actual: model.DoTest());
+        }
+        [TestMethod]
+        public void PrivacyPageTest()
+        {
+            PrivacyModel model = new PrivacyModel();
+            Assert.AreEqual("Privacy", actual: model.DoTest());
         }
     }
 }
